@@ -16,3 +16,21 @@ body {
 .RedeSocialLogo {
   width: 3rem;
 }
+.mouseHashtag {
+  display: none;
+}
+.anchor-link {
+  text-decoration: none;
+  opacity: 0;
+  transition: all 1s;
+}
+.anchor-link:hover{
+  content: "#";
+  opacity: 0.8;
+  color: white;
+  font-weight: 600;
+}
+.anchor-link::after {
+  content: "#";
+  opacity: 1;
+}
