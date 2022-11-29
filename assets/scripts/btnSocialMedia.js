@@ -1,10 +1,10 @@
 let btnSocialMediaJSON = [
-    {name: 'LinkedIn', link: 'https://www.linkedin.com/in/leonrdo-costa', icon: '/assets/images/LinkedInLogo.svg'},
-    {name: 'GitHub', link: 'https://github.com/leon-rdo', icon: '/assets/images/GitHubLogo.svg'},
+    {name: 'LinkedIn', link: 'https://www.linkedin.com/in/leonrdo-costa', icon: '../images/LinkedIn.svg'},
+    {name: 'GitHub', link: 'https://github.com/leon-rdo', icon: '../images/GitHubLogo.svg'},
     {name: 'Instagram', link: 'https://www.instagram.com/leonrdo_mtheus', icon: '/assets/images/InstagramLogo.svg'},
-    {name: 'Twitter', link: 'https://twitter.com/leonrdomtheus', icon: '/assets/images/TwitterLogo.svg'},
-    {name: 'Koo', link: 'https://www.kooapp.com/profile/leonardoabreu', icon: '/assets/images/KooLogo.svg'},
-    //{name: '', link: '', icon: '/assets/images/'},
+    {name: 'Twitter', link: 'https://twitter.com/leonrdomtheus', icon: '../images/TwitterLogo.svg'},
+    {name: 'Koo', link: 'https://www.kooapp.com/profile/leonardoabreu', icon: '../images/KooLogo.svg'},
+    //{name: '', link: '', icon: '../images/'},
 ];
 
 let btnSocialMediaArea = document.querySelector('.Box-RedesSociais');
