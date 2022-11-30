@@ -34,3 +34,11 @@ body {
   content: "#";
   opacity: 1;
 }
+#leokid {
+  aspect-ratio: 1/1;
+}
+#leokid img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
