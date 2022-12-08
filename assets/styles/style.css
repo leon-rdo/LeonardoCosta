@@ -6,6 +6,9 @@ body {
     rgb(1, 0, 15) 100%
   );
 }
+.modelos{
+  display: none;
+}
 .navbar-brand {
   width: 9rem;
 }
@@ -35,10 +38,28 @@ body {
   opacity: 1;
 }
 #leokid {
-  aspect-ratio: 1/1;
+  aspect-ratio: 3/2;
 }
 #leokid img {
   object-fit: cover;
   width: 100%;
   height: 100%;
+}
+.text-bio {
+  font-size: larger;
+}
+.formationLogo {
+  width: 30px;
+  height: auto;
+  margin-left: 10px;
+}
+.modelo-formation {
+  margin: 20px 0px;
+}
+.formation-text {
+  font-size: 1.5rem;
+  font-weight: 200;
+}
+.carousel-inner .carousel-item img {
+  object-fit: contain;
 }

@@ -1,0 +1,54 @@
+          <div class="row Sections">
+          <div class="modelos" style="display: none;">
+            <section class="modelo-section">
+              <div class="row row-sec justify-content-center align-items-center g-2 mt-3">
+                <h1 class="display-3 text-white mb-3">
+                  <a class="anchor-link" href=""></a>
+                </h1>
+                <p class="text-white one"></p>
+                <p class="text-white two"></p>
+                <p class="text-white three"></p>
+                <p class="text-white four"></p>
+              </div>
+            </section>
+          </div>
+        </div>
+
+    	<script src="./assets/scripts/sections.js"></script>
+
+
+
+let sectionsJSON = [
+    {
+        id: 'Formation', name: 'adgdadsg',
+        p1: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, ratione exercitationem eveniet similique quidem totam odio ab molestias explicabo porro sunt mollitia sapiente architecto ut voluptatem nam, id magnam deleniti?',
+        p2: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, ratione exercitationem eveniet similique quidem totam odio ab molestias explicabo porro sunt mollitia sapiente architecto ut voluptatem nam, id magnam deleniti?',
+        p3: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, ratione exercitationem eveniet similique quidem totam odio ab molestias explicabo porro sunt mollitia sapiente architecto ut voluptatem nam, id magnam deleniti?',
+        p4: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, ratione exercitationem eveniet similique quidem totam odio ab molestias explicabo porro sunt mollitia sapiente architecto ut voluptatem nam, id magnam deleniti?'
+    },
+    {
+        id: 'Biografia', name: 'Biografia',
+        p1: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, ratione exercitationem eveniet similique quidem totam odio ab molestias explicabo porro sunt mollitia sapiente architecto ut voluptatem nam, id magnam deleniti?',
+        p2: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, ratione exercitationem eveniet similique quidem totam odio ab molestias explicabo porro sunt mollitia sapiente architecto ut voluptatem nam, id magnam deleniti?',
+        p3: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, ratione exercitationem eveniet similique quidem totam odio ab molestias explicabo porro sunt mollitia sapiente architecto ut voluptatem nam, id magnam deleniti?',
+        p4: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, ratione exercitationem eveniet similique quidem totam odio ab molestias explicabo porro sunt mollitia sapiente architecto ut voluptatem nam, id magnam deleniti?'
+    },
+    //{id: '', name: '', p1: '', p2: '', p3: '', p4: ''},
+];
+
+let sectionsArea = document.querySelector('.Sections');
+
+for (let i = 0; i < sectionsJSON.length; i++) {
+
+    let itemSections = document.querySelector('.modelo-section').cloneNode(true);
+    itemSections.setAttribute('id', '#' + sectionsJSON[i].id);
+    itemSections.querySelector('.row-sec .display-3').innerHTML = sectionsJSON[i].name;
+    itemSections.querySelector('.row-sec .display-3 a').href = '#' + sectionsJSON[i].id;
+    itemSections.querySelector('.row-sec .display-3 a').setAttribute('aria-label', 'Link to this section: ' + sectionsJSON[i].id);
+    itemSections.querySelector('.row-sec .one').innerHTML = sectionsJSON[i].p1;
+    itemSections.querySelector('.row-sec .two').innerHTML = sectionsJSON[i].p2;
+    itemSections.querySelector('.row-sec .three').innerHTML = sectionsJSON[i].p4;
+    itemSections.querySelector('.row-sec .four').innerHTML = sectionsJSON[i].p3;
+
+    sectionsArea.append(itemSections);
+}
