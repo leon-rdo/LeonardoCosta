@@ -63,3 +63,50 @@ body {
 .carousel-inner .carousel-item img {
   object-fit: contain;
 }
+footer {
+  margin-top: 2rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  padding-bottom: 2rem;
+}
+footer a {
+  color: white !important;
+}
+@media screen and (min-width: 960px) {
+  .contato {
+    margin-left: 3rem;
+  }
+}
+@media screen and (min-width: 541px) and (max-width: 959px) {
+  .contato {
+    margin-left: 2rem;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 540px) {
+  .contato {
+    margin-left: 0.5rem;
+  }
+}
+.card-achievements-img {
+  object-fit: contain;
+}
+
+/* Achievements */
+.container-Image {
+  width: 100%;
+}
+.mainPic {
+  object-fit: contain;
+}
+.col-figure {
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+}
+@media screen and (min-width: 992px) {
+  #mainPic {
+    height: 500px;
+  }
+}
+.mute-link {
+  color: inherit;
+}
