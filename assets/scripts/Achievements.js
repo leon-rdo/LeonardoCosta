@@ -1,5 +1,5 @@
 let achievementsJSON = [
-    {title: 'Ganhador do Hackathon INSERN 2022', description: 'O desafio INSERN consistiu em uma competição híbrida com base num tema na qual foram desenvolvidos protótipos digitais das soluções propostas.', picture: '/assets/images/Equipe-da-Unama-Ganha-Desafio-INSERN-2022.jpeg', alt: 'Equipe SERTECH da UNAMA: Leonardo e Nandara segurando um cheque gigante de R$ 15.000 com a inscrição "1º Lugar", Denis e Michel à esquerda, atrás, um carro forte da PROSSEGUR.', url: '/assets/Pages/DesafioINSERN.html', date: '04/12/2022'},
+    {title: 'Ganhador do Hackathon INSERN 2022', description: 'O desafio INSERN consistiu em uma competição híbrida com base num tema na qual foram desenvolvidos protótipos digitais das soluções propostas.', picture: './assets/images/Equipe-da-Unama-Ganha-Desafio-INSERN-2022.jpeg', alt: 'Equipe SERTECH da UNAMA: Leonardo e Nandara segurando um cheque gigante de R$ 15.000 com a inscrição "1º Lugar", Denis e Michel à esquerda, atrás, um carro forte da PROSSEGUR.', url: './assets/Pages/DesafioINSERN.html', date: '04/12/2022'},
     {title: 'Em breve'},
     //{title: '', description: '', picture: '/assets/images/...', url: '/assets/Pages/...', date: ''},
 ];
