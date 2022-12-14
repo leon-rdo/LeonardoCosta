@@ -9,15 +9,9 @@ body {
 .modelos{
   display: none;
 }
-.navbar-brand {
-  width: 9rem;
-}
 #MainPic {
   width: 25rem;
   border-radius: 16rem;
-}
-.RedeSocialLogo {
-  width: 3rem;
 }
 .mouseHashtag {
   display: none;
@@ -63,6 +57,9 @@ body {
 .carousel-inner .carousel-item img {
   object-fit: contain;
 }
+.card-achievements-img {
+  object-fit: contain;
+}
 footer {
   margin-top: 2rem;
   background-color: rgba(0, 0, 0, 0.3);
@@ -72,23 +69,68 @@ footer {
 footer a {
   color: white !important;
 }
-@media screen and (min-width: 960px) {
-  .contato {
-    margin-left: 3rem;
+
+.contato {
+  margin-left: 3.5vw;
+}
+
+/*X-Small devices (575px and down)*/
+@media (max-width: 576px) {
+  .RedeSocialLogo {
+    width: 9vw;
+  }
+  .navbar-brand {
+    width: 30vw;
   }
 }
-@media screen and (min-width: 541px) and (max-width: 959px) {
-  .contato {
-    margin-left: 2rem;
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+  .RedeSocialLogo {
+    width: 8vw;
+  }
+  .navbar-brand {
+    width: 25vw;
   }
 }
-@media screen and (min-width: 0px) and (max-width: 540px) {
-  .contato {
-    margin-left: 0.5rem;
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+  .RedeSocialLogo {
+    width: 6vw;
+  }
+  .navbar-brand {
+    width: 20vw;
   }
 }
-.card-achievements-img {
-  object-fit: contain;
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+  .RedeSocialLogo {
+    width: 5vw;
+  }
+  .navbar-brand {
+    width: 15vw;
+  }
+}
+
+/*X-Large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+  .RedeSocialLogo {
+    width: 4vw;
+  }
+  .navbar-brand {
+    width: 12vw;
+  }
+}
+
+/*XX-Large devices (larger desktops, 1400px and up)*/
+@media (min-width: 1400px) {
+  .RedeSocialLogo {
+    width: 3vw;
+  }
+  .navbar-brand {
+    width: 10vw;
+  }
 }
 
 /* Achievements */
