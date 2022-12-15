@@ -76,20 +76,33 @@ footer a {
 
 /*X-Small devices (575px and down)*/
 @media (max-width: 576px) {
+  main {
+    padding: 4vw;
+  }
   .RedeSocialLogo {
     width: 9vw;
   }
   .navbar-brand {
     width: 30vw;
   }
+  .card-achievements {
+    margin: 6vw;
+  }
 }
 /*Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) {
+  main {
+    padding: 5vw;
+  }
   .RedeSocialLogo {
     width: 8vw;
   }
   .navbar-brand {
     width: 25vw;
+  }
+  .card-achievements {
+    margin: 4vw;
+    max-width: 500px;
   }
 }
 
@@ -101,6 +114,10 @@ footer a {
   .navbar-brand {
     width: 20vw;
   }
+  .card-achievements {
+    height: 64.5vw;
+    min-width: 260px;
+  }
 }
 
 /*Large devices (desktops, 992px and up)*/
@@ -110,6 +127,9 @@ footer a {
   }
   .navbar-brand {
     width: 15vw;
+  }
+  .card-achievements {
+    height: 55vw;
   }
 }
 
@@ -121,6 +141,10 @@ footer a {
   .navbar-brand {
     width: 12vw;
   }
+  .card-achievements {
+    height: 45vw;
+    min-width: 330px;
+  }
 }
 
 /*XX-Large devices (larger desktops, 1400px and up)*/
@@ -130,6 +154,10 @@ footer a {
   }
   .navbar-brand {
     width: 10vw;
+  }
+  .card-achievements {
+    height: 39vw;
+    min-width: 400px;
   }
 }
 
