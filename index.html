@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Leonardo · Apresentação</title>
+    <title>Leonardo · Home</title>
     <link rel="shortcut icon" href="./assets/images/favicon (lc).svg" type="image/x-icon">
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
@@ -66,10 +66,15 @@
               </li>
             </ul>
           </div>
+          <div class="d-flex">
+            <button class="btn btn-success btn-sm d-flex me-2" id="btnBR" onclick="translateBR()">Português</button>
+            <button class="btn btn-secondary btn-sm d-flex me-2" id="btnEN" onclick="translateEn()" >English</button>
+            <button class="btn btn-secondary btn-sm d-flex me-2" id="btnES" onclick="translateEs()">Español</button>
+          </div>
         </div>
       </nav>
     </header>
-
+    <p class="text-secondary text-center mt-1" id="tranlationMessage"><small></small></p>
     <main>
       <div class="container-xxl">
         <div class="row justify-content-center align-items-start">
@@ -81,7 +86,7 @@
                 class="figure-img img-fluid mx-auto d-block mt-2"
                 id="MainPic"
               />
-              <figcaption class="figure-caption text-center text-light">
+              <figcaption id="test" class="figure-caption text-center text-light">
                 Leonardo Costa
               </figcaption>
             </figure>
@@ -104,11 +109,11 @@
         <section id="Bio">
           <div class="row justify-content-between g-5 mt-3">
             <div class="col-12 col-md-7">
-              <h1 class="display-3 text-white mb-3">Biografia
+              <h1 class="display-3 text-white mb-3" id="bioTitle">Biografia
                 <a class="anchor-link" href="#Bio" aria-label="Link to this section: Biografia"></a>
               </h1>
-              <p class="text-white text-bio">Nascido em <em class="popover-dismiss" tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-title="São Gonçalo" data-bs-content="Cidade da região metropolitana da capital do estado.">São Gonçalo - Rio de Janeiro</em>, na sexta-feira do dia 16 de maio de 2003, <em>Leonardo Matheus de Abreu Costa</em>, é estudante de <strong>Análise e Desenvolvimento de Sistemas</strong> na <em>Universidade da Amazônia - UNAMA</em>.</p>
-              <p class="text-white text-bio">Aos 6 anos de idade mudou-se para <em class="popover-dismiss" tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-title="São Gonçalo" data-bs-content="Capital do estado do Pará.">Belém do Pará</em>, onde reside até os dias presentes. Leonardo, atualmente, estagia na <strong>Ser Educacional</strong>, como <strong>desenvolvedor front-end</strong>.</p>
+              <p class="text-white text-bio" id="bioFirstP">Nascido em <em class="popover-dismiss" tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-title="São Gonçalo" data-bs-content="Cidade da região metropolitana da capital do estado.">São Gonçalo - Rio de Janeiro</em>, na sexta-feira do dia 16 de maio de 2003, <em>Leonardo Matheus de Abreu Costa</em>, é estudante de <strong>Análise e Desenvolvimento de Sistemas</strong> na <em>Universidade da Amazônia - UNAMA</em>.</p>
+              <p class="text-white text-bio" id="bioSecondP">Aos 6 anos de idade mudou-se para <em class="popover-dismiss" tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-title="São Gonçalo" data-bs-content="Capital do estado do Pará.">Belém do Pará</em>, onde reside até os dias presentes. Leonardo, atualmente, estagia na <strong>Ser Educacional</strong>, como <strong>desenvolvedor front-end</strong>.</p>
             </div>
             <div class="col-12 col-md-5">
               <figure>
@@ -123,7 +128,7 @@
         
         <section id="Formation">
           <div class="row justify-content-center align-items-center g-2 mt-3">
-              <h1 class="display-3 text-white mb-3">Formação
+              <h1 class="display-3 text-white mb-3" id="formationTitle">Formação
                 <a class="anchor-link" href="#Formation" aria-label="Link to this section: Formation"></a>
               </h1>
             <div class="formation-box"></div>
@@ -138,7 +143,7 @@
 
         <section id="Certificates">
           <div class="row justify-content-center align-items-center g-2 mt-3">
-            <h1 class="display-3 text-white mb-3">Certificados
+            <h1 class="display-3 text-white mb-3" id="certificatesTitle">Certificados
               <a class="anchor-link" href="#Certificates" aria-label="Link to this section: Certificates"></a>
             </h1>
             <div class="col-12 mb-5">
@@ -161,7 +166,7 @@
 
         <section id="Achievements">
           <div class="row justify-content-center align-items-center">
-            <h1 class="display-3 text-white mb-3">Conquistas
+            <h1 class="display-3 text-white mb-3" id="achievementsTitle">Conquistas
               <a class="anchor-link" href="#Achievements" aria-label="Link to this section: Achievements"></a>
             </h1>
             <div class="col-12 mb-5">
@@ -179,7 +184,7 @@
                       <span class="spinner-border spinner-border-md ms-2" role="status" aria-hidden="true"></span>
                     </div>
                     <p class="card-text"></p>
-                    <a class="btn btn-light btn-ach" href="">Veja </a>
+                    <a class="btn btn-light btn-ach" id="seeMore" href="">Veja </a>
                   </div>
                   <div class="card-footer"><small></small></div>
                 </div>
@@ -194,7 +199,7 @@
 
     <footer class="footer navbar-fixed-bottom">
       <section class="contato">
-        <h2>Contato</h2>
+        <h2 id="contact">Contato</h2>
         <ul class="list-group list-group-numbered">
           <li>E-mail: <a href="mailto:leonardoabreu1212@gmail.com">leonardoabreu1212@gmail.com</a></li>
         </ul>
@@ -211,5 +216,7 @@
     <script src="./assets/scripts/Certificates.js"></script>
     <script src="./assets/scripts/Achievements.js"></script>
     <script src="./assets/scripts/popovers.js"></script>
+    <script src="./assets/scripts/translate.js"></script>
+
   </body>
 </html>
