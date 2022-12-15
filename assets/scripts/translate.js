@@ -28,10 +28,21 @@ function translateEn() {
     document.getElementById('contact').innerHTML = 'Contact';
 
     document.querySelector('#tranlationMessage small').innerHTML = "We're still working on the translation, thank you for the comprehension!";
-    document.getElementById('btnEN').style.backgroundColor = 'Green';
-    document.getElementById('btnES').style.backgroundColor = '';
-    document.getElementById('btnBR').style.backgroundColor = '#70747c';
+    document.getElementById('btnEN-into').style.backgroundColor = '#198754';
+    document.getElementById('btnEN-into').style.borderColor = '#198754';
+    document.getElementById('btnEN-out').style.backgroundColor = '#198754';
+    document.getElementById('btnEN-out').style.borderColor = '#198754';
 
+    document.getElementById('btnES-into').style.backgroundColor = '';
+    document.getElementById('btnES-into').style.borderColor = '';
+    document.getElementById('btnES-out').style.borderColor = '';
+    document.getElementById('btnES-out').style.backgroundColor = '';
+
+
+    document.getElementById('btnBR-out').style.backgroundColor = '#70747c';
+    document.getElementById('btnBR-out').style.borderColor = '#70747c';
+    document.getElementById('btnBR-into').style.backgroundColor = '#70747c';
+    document.getElementById('btnBR-into').style.borderColor = '#70747c';
 }
 function translateEs() {
     if(document.querySelector('a[href="#start"]').innerHTML == "Comienzo"){
@@ -56,7 +67,20 @@ function translateEs() {
     document.getElementById('contact').innerHTML = 'Contacto';
 
     document.querySelector('#tranlationMessage small').innerHTML = "Todavía estamos trabajando en la traducción, ¡gracias por la comprensión!";
-    document.getElementById('btnES').style.backgroundColor = 'Green';
-    document.getElementById('btnEN').style.backgroundColor = '';
-    document.getElementById('btnBR').style.backgroundColor = '#70747c';
+
+    document.getElementById('btnEN-into').style.backgroundColor = '';
+    document.getElementById('btnEN-into').style.borderColor = '';
+    document.getElementById('btnEN-out').style.backgroundColor = '';
+    document.getElementById('btnEN-out').style.borderColor = '';
+
+    document.getElementById('btnES-into').style.backgroundColor = '#198754';
+    document.getElementById('btnES-into').style.borderColor = '#198754';
+    document.getElementById('btnES-out').style.borderColor = '#198754';
+    document.getElementById('btnES-out').style.backgroundColor = '#198754';
+
+
+    document.getElementById('btnBR-out').style.backgroundColor = '#70747c';
+    document.getElementById('btnBR-out').style.borderColor = '#70747c';
+    document.getElementById('btnBR-into').style.backgroundColor = '#70747c';
+    document.getElementById('btnBR-into').style.borderColor = '#70747c';
 }

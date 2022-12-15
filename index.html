@@ -64,12 +64,19 @@
               <li class="nav-item">
                 <a class="nav-link" href="#Achievements">Conquistas</a>
               </li>
+              <li class="nav-item">
+                <div class="btn-group btn-translate w-100 d-lg-none">
+                  <button class="btn btn-success btn-sm me-1" id="btnBR-into" onclick="translateBR()">Português</button>
+                  <button class="btn btn-secondary btn-sm me-1" id="btnEN-into" onclick="translateEn()" >English</button>
+                  <button class="btn btn-secondary btn-sm me-1" id="btnES-into" onclick="translateEs()">Español</button>
+                </div>
+              </li>
             </ul>
           </div>
-          <div class="d-flex">
-            <button class="btn btn-success btn-sm d-flex me-2" id="btnBR" onclick="translateBR()">Português</button>
-            <button class="btn btn-secondary btn-sm d-flex me-2" id="btnEN" onclick="translateEn()" >English</button>
-            <button class="btn btn-secondary btn-sm d-flex me-2" id="btnES" onclick="translateEs()">Español</button>
+          <div class="btn-group btn-translate d-none d-lg-flex">
+            <button class="btn btn-success btn-sm me-1" id="btnBR-out" onclick="translateBR()">Português</button>
+            <button class="btn btn-secondary btn-sm me-1" id="btnEN-out" onclick="translateEn()" >English</button>
+            <button class="btn btn-secondary btn-sm me-1" id="btnES-out" onclick="translateEs()">Español</button>
           </div>
         </div>
       </nav>
