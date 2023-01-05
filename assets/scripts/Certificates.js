@@ -1,7 +1,7 @@
 let certificatesJSON = [
     { title: 'PBB Practicioner', picture: './assets/images/Certificado de PBB Practitioner (Leonardo Costa).png' },
     { title: 'Trilha Conctar - RocketSeat', picture: './assets/images/Certificado Conectar (Leonardo Costa).png' },
-    { title: 'Test of English as Foreign Language - TOEFL', picture: './assets/images/TOEFL - PBT (Leonardo Costa).jpg' },
+    { title: 'Test of English as Foreign Language - TOEFL', picture: './assets/images/TOEFL.jpg' },
     //{ title: '', picture: './assets/images/...' },
 ];
 

@@ -16,6 +16,8 @@ function translateEn() {
     document.getElementById('bioTitle').innerHTML = 'Biography';
     document.getElementById('bioFirstP').innerHTML = 'Born in São Gonçalo - Rio de Janeiro, on Friday the 16th of May 2003, Leonardo Matheus de Abreu Costa is a student of Systems Analysis and Development at the University of Amazônia - UNAMA.'
     document.getElementById('bioSecondP').innerHTML = 'At the age of 6 he moved to Belém do Pará, where he lives nowadays. Leonardo is, currently, an intern at Ser Educacional, as a front-end developer.';
+    document.getElementById('leokidCap').innerHTML = 'Leonardo at 5 years old.';
+
 
     document.getElementById('formationTitle').innerHTML = 'Formation';
 
@@ -43,6 +45,8 @@ function translateEn() {
     document.getElementById('btnBR-out').style.borderColor = '#70747c';
     document.getElementById('btnBR-into').style.backgroundColor = '#70747c';
     document.getElementById('btnBR-into').style.borderColor = '#70747c';
+
+    itemCard.querySelector('.modelo-card .card-body .card-title').innerHTML = achievementsJSON[i].titleEN;
 }
 function translateEs() {
     if(document.querySelector('a[href="#start"]').innerHTML == "Comienzo"){
@@ -55,8 +59,8 @@ function translateEs() {
 
     document.getElementById('bioTitle').innerHTML = 'Biografía';
     document.getElementById('bioFirstP').innerHTML = 'Nacido en São Gonçalo - Rio de Janeiro, el viernes 16 de mayo de 2003, Leonardo Matheus de Abreu Costa es estudiante de Análisis y Desarrollo de Sistemas en la Universidad de Amazonia - UNAMA.'
-
     document.getElementById('bioSecondP').innerHTML = 'A los 6 años se mudó a Belém do Pará, donde vive hasta la actualidad. Leonardo actualmente es pasante en Ser Educacional, como desarrollador front-end.';
+    document.getElementById('leokidCap').innerHTML = 'Leonardo a los 5 años.';
 
     document.getElementById('formationTitle').innerHTML = 'Capacitación';
 
