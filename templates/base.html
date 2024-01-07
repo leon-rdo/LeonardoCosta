@@ -50,6 +50,10 @@
         <li><a href="#contact" class="nav-link scrollto"><i class="bi bi-envelope"></i> <span>Contato</span></a></li>
         <hr class="nav-divisor my-2">
         <li><a href="{% url 'blog:index' %}" class="nav-link"><i class="bi bi-journal-richtext"></i> <span>Blog</span></a></li>
+        <hr class="nav-divisor my-2">
+        {% if user.is_superuser %}
+        <li><a href="{% url 'admin:index' %}" class="nav-link"><i class="bi bi-person-badge"></i> <span>Administração</span></a></li>
+        {% endif %}
     </ul>
     </nav><!-- .nav-menu -->
 
