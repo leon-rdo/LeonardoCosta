@@ -268,3 +268,18 @@
   new PureCounter();
 
 })()
+
+document.addEventListener('DOMContentLoaded', function () {
+  var offcanvasElement = document.querySelector('#offcanvasHeader');
+  var toggleButtonIcon = document.querySelector('.nav-toggle-button i');
+
+  offcanvasElement.addEventListener('show.bs.offcanvas', function () {
+    toggleButtonIcon.classList.remove('bi-list');
+    toggleButtonIcon.classList.add('bi-x');
+  });
+
+  offcanvasElement.addEventListener('hide.bs.offcanvas', function () {
+    toggleButtonIcon.classList.remove('bi-x');
+    toggleButtonIcon.classList.add('bi-list');
+  });
+});
