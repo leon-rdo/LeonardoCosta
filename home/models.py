@@ -19,14 +19,20 @@ class Settings(models.Model):
     education = models.CharField(_("Educação"), max_length=50)
     freelance = models.BooleanField(_("Freelance"))
     # Page Texts
-    about = models.TextField(_("Sobre"))
-    facts = models.TextField(_("Fatos"))
-    skills = models.TextField(_("Habilidades"))
-    resume = models.TextField(_("Resumo"))
-    portfolio = models.TextField(_("Portfólio"))
-    services = models.TextField(_("Serviços"))
-    testimonials = models.TextField(_("Testemunhos"))
-    contact = models.TextField(_("Contato"))
+    about = models.TextField(_("Sobre"), blank=True, null=True)
+    facts = models.TextField(_("Fatos"), blank=True, null=True)
+    skills = models.TextField(_("Habilidades"), blank=True, null=True)
+    resume = models.TextField(_("Resumo"), blank=True, null=True)
+    portfolio = models.TextField(_("Portfólio"), blank=True, null=True)
+    services = models.TextField(_("Serviços"), blank=True, null=True)
+    testimonials = models.TextField(_("Testemunhos"), blank=True, null=True)
+    contact = models.TextField(_("Contato"), blank=True, null=True)
+
+    @property
+    def age(self):
+        from datetime import date
+        today = date.today()
+        return today.year - self.birthday.year - ((today.month, today.day) < (self.birthday.month, self.birthday.day))
 
     def save(self, *args, **kwargs):
         if Settings.objects.exists() and not self.pk:
@@ -34,7 +40,7 @@ class Settings(models.Model):
         return super(Settings, self).save(*args, **kwargs)
 
     def __str__(self):
-        return _('Configurações do Site')
+        return self.name
     
     class Meta:
         verbose_name = _('Configuração do Site')
