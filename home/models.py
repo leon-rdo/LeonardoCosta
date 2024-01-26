@@ -18,15 +18,6 @@ class Settings(models.Model):
     city = models.CharField(_("Cidade"), max_length=50)
     education = models.CharField(_("Educação"), max_length=50)
     freelance = models.BooleanField(_("Freelance"))
-    # Page Texts
-    about = models.TextField(_("Sobre"), blank=True, null=True)
-    facts = models.TextField(_("Fatos"), blank=True, null=True)
-    skills = models.TextField(_("Habilidades"), blank=True, null=True)
-    resume = models.TextField(_("Resumo"), blank=True, null=True)
-    portfolio = models.TextField(_("Portfólio"), blank=True, null=True)
-    services = models.TextField(_("Serviços"), blank=True, null=True)
-    testimonials = models.TextField(_("Testemunhos"), blank=True, null=True)
-    contact = models.TextField(_("Contato"), blank=True, null=True)
 
     @property
     def age(self):
@@ -45,6 +36,53 @@ class Settings(models.Model):
     class Meta:
         verbose_name = _('Configuração do Site')
         verbose_name_plural = _('Configurações do Site')
+
+
+class Text(models.Model):
+    """
+    Modelo para armazenar os textos do site.
+    """
+    spots = (
+        ('about', _('Sobre')),
+        ('facts', _('Fatos')),
+        ('skills', _('Habilidades')),
+        ('resume', _('Resumo')),
+        ('portfolio', _('Portfólio')),
+        ('services', _('Serviços')),
+        ('testimonials', _('Testemunhos')),
+        ('contact', _('Contato')),
+    )
+
+    spot = models.CharField(_("Local"), max_length=30, choices=spots)
+    title = models.CharField(_("Título"), max_length=50, blank=True, null=True)
+    text = models.TextField(_("Texto"), blank=True, null=True)
+    subtitle = models.CharField(_("Subtítulo"), max_length=50, blank=True, null=True)
+    subtext = models.CharField(_("Subtexto"), max_length=50, blank=True, null=True)
+    image = models.ImageField(_("Imagem"), upload_to='images/texts', blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        if not any([self.title, self.text, self.subtitle, self.subtext, self.image]):
+            raise ValidationError(_('Pelo menos um dos campos além de "Local" deve estar preenchido.'))
+        return super(Text, self).save(*args, **kwargs)
+
+    def __str__(self):
+        if self.title:
+            return f"{self.spot} ({self.title})"
+        elif self.text:
+            return f"{self.spot} ({self.text[:5]}...)"
+        elif self.subtitle:
+            return f"{self.spot} ({self.subtitle[:5]})"
+        elif self.subtext:
+            return f"{self.spot} ({self.subtext[:5]}...)"
+        elif self.image:
+            return f"{self.spot} (Imagem)"
+        else:
+            return f"{self.spot}"
+    
+    class Meta:
+        verbose_name = _('Texto')
+        verbose_name_plural = _('Textos')
+        ordering = ['spot']
 
 
 class SocialMedia(models.Model):
@@ -70,6 +108,7 @@ class SocialMedia(models.Model):
     class Meta:
         verbose_name = _('Rede Social')
         verbose_name_plural = _('Redes Sociais')
+        ordering = ['platform']
 
 
 class Education(models.Model):
@@ -96,6 +135,7 @@ class Education(models.Model):
     class Meta:
         verbose_name = _('Formação')
         verbose_name_plural = _('Formações')
+        ordering = ['-start_year']
 
     
 class Experience(models.Model):
@@ -122,6 +162,7 @@ class Experience(models.Model):
     class Meta:
         verbose_name = _('Experiência')
         verbose_name_plural = _('Experiências')
+        ordering = ['-start_year']
 
 
 class Skill(models.Model):
@@ -140,6 +181,7 @@ class Skill(models.Model):
     class Meta:
         verbose_name = _('Habilidade')
         verbose_name_plural = _('Habilidades')
+        ordering = ['-percentage']
 
 
 class Portfolio(models.Model):
@@ -158,23 +200,7 @@ class Portfolio(models.Model):
     class Meta:
         verbose_name = _('Portfólio')
         verbose_name_plural = _('Portfólio')
-
-
-class Testimonial(models.Model):
-    """
-    Modelo para armazenar os depoimentos sobre o proprietário do site.
-    """
-    image = models.ImageField(_("Imagem"), upload_to='images/testimonials')
-    name = models.CharField(_("Nome"), max_length=50)
-    description = models.TextField(_("Descrição"))
-    testimonial = models.TextField(_("Testemunho"))
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = _('Testemunho')
-        verbose_name_plural = _('Testemunhos')
+        ordering = ['name']
 
 
 class Message(models.Model):
@@ -185,6 +211,7 @@ class Message(models.Model):
     email = models.EmailField(_("Email"), max_length=50)
     subject = models.CharField(_("Assunto"), max_length=50)
     message = models.TextField(_("Mensagem"))
+    date_time = models.DateTimeField(_("Horário de Envio"), auto_now=False, auto_now_add=True)
 
     def __str__(self):
         return self.name
@@ -192,3 +219,4 @@ class Message(models.Model):
     class Meta:
         verbose_name = _('Mensagem')
         verbose_name_plural = _('Mensagens')
+        ordering = ['-date_time']
