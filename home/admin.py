@@ -25,6 +25,10 @@ class SkillAdmin(admin.ModelAdmin):
 class PortfolioAdmin(admin.ModelAdmin):
     pass
 
+@admin.register(Text)
+class TextAdmin(admin.ModelAdmin):
+    pass
+
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
     pass

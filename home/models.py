@@ -57,7 +57,7 @@ class Text(models.Model):
     title = models.CharField(_("Título"), max_length=50, blank=True, null=True)
     text = models.TextField(_("Texto"), blank=True, null=True)
     subtitle = models.CharField(_("Subtítulo"), max_length=50, blank=True, null=True)
-    subtext = models.CharField(_("Subtexto"), max_length=50, blank=True, null=True)
+    subtext = models.TextField(_("Subtexto"), blank=True, null=True)
     image = models.ImageField(_("Imagem"), upload_to='images/texts', blank=True, null=True)
 
     def save(self, *args, **kwargs):
