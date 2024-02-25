@@ -16,8 +16,6 @@ class Settings(models.Model):
     website = models.CharField(_("Website"), max_length=50)
     phone = models.CharField(_("Telefone"), max_length=50)
     city = models.CharField(_("Cidade"), max_length=50)
-    education = models.CharField(_("Educação"), max_length=50)
-    freelance = models.BooleanField(_("Freelance"))
 
     @property
     def age(self):
@@ -125,9 +123,9 @@ class Education(models.Model):
     def save(self, *args, **kwargs):
         if (self.end_year is None and self.present is False) or (self.end_year and self.present is True):
             raise ValidationError(_('Ou o ano de conclusão é preenchido ou o campo "Atualmente" deve ser marcado.'))
-        elif self.start_year > self.end_year:
+        elif self.end_year is not None and self.start_year > self.end_year:
             raise ValidationError(_('O ano de início não pode ser maior que o ano de conclusão.'))
-        return super(Experience, self).save(*args, **kwargs)
+        return super(Education, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -152,7 +150,7 @@ class Experience(models.Model):
     def save(self, *args, **kwargs):
         if (self.end_year is None and self.present is False) or (self.end_year and self.present is True):
             raise ValidationError(_('Ou o ano de conclusão é preenchido ou o campo "Atualmente" deve ser marcado.'))
-        elif self.start_year > self.end_year:
+        elif self.end_year is not None and self.start_year > self.end_year:
             raise ValidationError(_('O ano de início não pode ser maior que o ano de conclusão.'))
         return super(Experience, self).save(*args, **kwargs)
 
