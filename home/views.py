@@ -1,10 +1,14 @@
-from django.views.generic import TemplateView
+from django.views.generic import FormView
+from django.contrib import messages
 
 from .models import *
+from .forms import ContactForm
 
 
-class IndexView(TemplateView):
+class IndexView(FormView):
     template_name = 'home/index.html'
+    form_class = ContactForm
+    success_url = '/#contact'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -27,3 +31,11 @@ class IndexView(TemplateView):
         context["portfolios"] = Portfolio.objects.all()
         return context
     
+    def form_valid(self, form):
+        form.save()
+        messages.success(self.request, 'Formulário enviado com sucesso!')
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Falha no envio do formulário. Por favor, verifique sua entrada.')
+        return super().form_invalid(form)
