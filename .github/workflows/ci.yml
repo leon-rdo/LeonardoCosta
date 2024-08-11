@@ -46,11 +46,12 @@ jobs:
       run: |
         echo "$SSH_PRIVATE_KEY" | tr -d '\r' > /tmp/private_key
         chmod 600 /tmp/private_key
-        # Verificar se a chave foi criada corretamente
-        file /tmp/private_key
-        ssh-keygen -y -f /tmp/private_key
 
     - name: Deploy to server
       run: |
-        rsync -avz -e "ssh -i /tmp/private_key -o LogLevel=DEBUG3" ./ ubuntu@167.234.243.40:/var/www/leonardo-costa/
-        ssh -i /tmp/private_key -o LogLevel=DEBUG3 ubuntu@167.234.243.40 'cd /var/www/leonardo-costa && sudo systemctl restart nginx'
+        rsync -avz --delete -e "ssh -i /tmp/private_key" ./ ubuntu@167.234.243.40:/var/www/leonardo-costa/
+        ssh -i /tmp/private_key ubuntu@167.234.243.40 << 'EOF'
+          cd /var/www/leonardo-costa
+          sudo systemctl restart gunicorn
+          sudo systemctl restart nginx
+        EOF
