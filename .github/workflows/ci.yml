@@ -1,0 +1,45 @@
+name: Django CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.12'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run migrations
+      run: python manage.py migrate
+
+    - name: Run tests
+      run: python manage.py test
+
+    - name: Collect static files
+      run: python manage.py collectstatic --noinput
+
+    - name: Deploy to server
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      run: |
+        echo "$SSH_PRIVATE_KEY" > /tmp/private_key
+        chmod 600 /tmp/private_key
+        rsync -avz -e "ssh -i /tmp/private_key" ./ ubuntu@167.234.243.40:/var/www/leonardo-costa/
+        ssh -i /tmp/private_key ubuntu@167.234.243.40 'cd /var/www/leonardo-costa && sudo systemctl restart nginx'
