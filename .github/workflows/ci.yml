@@ -40,11 +40,17 @@ jobs:
         mkdir -p ~/.ssh
         ssh-keyscan -H 167.234.243.40 >> ~/.ssh/known_hosts
 
-    - name: Deploy to server
+    - name: Create private key file
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       run: |
-        echo "$SSH_PRIVATE_KEY" > /tmp/private_key
+        echo "$SSH_PRIVATE_KEY" | tr -d '\r' > /tmp/private_key
         chmod 600 /tmp/private_key
-        rsync -avz -e "ssh -i /tmp/private_key" ./ ubuntu@167.234.243.40:/var/www/leonardo-costa/
-        ssh -i /tmp/private_key ubuntu@167.234.243.40 'cd /var/www/leonardo-costa && sudo systemctl restart nginx'
+        # Verificar se a chave foi criada corretamente
+        file /tmp/private_key
+        ssh-keygen -y -f /tmp/private_key
+
+    - name: Deploy to server
+      run: |
+        rsync -avz -e "ssh -i /tmp/private_key -o LogLevel=DEBUG3" ./ ubuntu@167.234.243.40:/var/www/leonardo-costa/
+        ssh -i /tmp/private_key -o LogLevel=DEBUG3 ubuntu@167.234.243.40 'cd /var/www/leonardo-costa && sudo systemctl restart nginx'
