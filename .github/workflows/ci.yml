@@ -35,6 +35,11 @@ jobs:
     - name: Collect static files
       run: python manage.py collectstatic --noinput
 
+    - name: Add server to known_hosts
+      run: |
+        mkdir -p ~/.ssh
+        ssh-keyscan -H 167.234.243.40 >> ~/.ssh/known_hosts
+
     - name: Deploy to server
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
