@@ -29,6 +29,7 @@ jobs:
     - name: Set up Django environment
       run: |
         python manage.py migrate
+        python manage.py collectstatic --noinput
 
     - name: Run tests
       run: |
@@ -53,7 +54,7 @@ jobs:
         pip install -r requirements.txt
 
     - name: Add SSH key
-      uses: webfactory/ssh-agent@v0.5.3  # Usando a versão mais recente estável conhecida
+      uses: webfactory/ssh-agent@v0.5.3
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
@@ -63,4 +64,13 @@ jobs:
         DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
         DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
       run: |
-        ssh $DEPLOY_USER@$DEPLOY_SERVER 'cd $DEPLOY_PATH && git pull && source env/bin/activate && pip install -r requirements.txt && python manage.py migrate && sudo systemctl restart gunicorn && sudo systemctl reload nginx'
+        ssh $DEPLOY_USER@$DEPLOY_SERVER '
+          cd $DEPLOY_PATH &&
+          git pull &&
+          source env/bin/activate &&
+          pip install -r requirements.txt &&
+          python manage.py migrate &&
+          python manage.py collectstatic --noinput &&
+          pkill -f "gunicorn" || true &&
+          gunicorn -c ./configs/gunicorn.py LeonardoCosta.wsgi &
+        '
