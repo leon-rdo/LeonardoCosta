@@ -54,13 +54,11 @@ jobs:
         pip install -r requirements.txt
 
     - name: Add SSH key
-      uses: webfactory/ssh-agent@v0.5.3
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-    - name: Add server to known_hosts
       run: |
-        ssh-keyscan -H $DEPLOY_SERVER >> ~/.ssh/known_hosts
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.DEPLOY_SERVER }} >> ~/.ssh/known_hosts
 
     - name: Deploy to Server
       env:
@@ -68,7 +66,7 @@ jobs:
         DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
         DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
       run: |
-        ssh $DEPLOY_USER@$DEPLOY_SERVER '
+        ssh -i ~/.ssh/id_rsa $DEPLOY_USER@$DEPLOY_SERVER '
           cd $DEPLOY_PATH &&
           git pull &&
           source env/bin/activate &&
