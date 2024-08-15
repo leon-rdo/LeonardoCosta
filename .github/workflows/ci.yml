@@ -61,15 +61,16 @@ jobs:
         DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
         DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
       run: |
-        ssh -i ~/.ssh/id_rsa $DEPLOY_USER@$DEPLOY_SERVER '
-          cd $DEPLOY_PATH &&
-          pwd &&  # Verificar se estamos no diretório correto
-          ls -la &&  # Listar conteúdo do diretório
-          git pull &&
-          source env/bin/activate &&
-          pip install -r requirements.txt &&
-          python manage.py migrate &&
-          python manage.py collectstatic --noinput &&
-          pkill -f "gunicorn" || true &&
+        ssh -i ~/.ssh/id_rsa $DEPLOY_USER@$DEPLOY_SERVER << EOF
+          cd $DEPLOY_PATH
+          pwd
+          ls -la
+          git pull
+          source env/bin/activate
+          pip install -r requirements.txt
+          python manage.py migrate
+          python manage.py collectstatic --noinput
+          pkill -f "gunicorn" || true
           gunicorn -c ./configs/gunicorn.py LeonardoCosta.wsgi &
-        '
+        EOF
+
