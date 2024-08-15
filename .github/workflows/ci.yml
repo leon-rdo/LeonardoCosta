@@ -63,8 +63,6 @@ jobs:
       run: |
         ssh -i ~/.ssh/id_rsa $DEPLOY_USER@$DEPLOY_SERVER << EOF
           cd $DEPLOY_PATH
-          pwd
-          ls -la
           git pull
           source env/bin/activate
           pip install -r requirements.txt
