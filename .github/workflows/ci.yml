@@ -71,6 +71,5 @@ jobs:
           python manage.py migrate
           python manage.py collectstatic --noinput
           pkill -f "gunicorn" || true
-          gunicorn -c ./configs/gunicorn.py LeonardoCosta.wsgi &
+          nohup gunicorn -c ./configs/gunicorn.py LeonardoCosta.wsgi &>/dev/null &
         EOF
-
