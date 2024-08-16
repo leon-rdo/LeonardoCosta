@@ -270,20 +270,50 @@
 })()
 
 document.addEventListener('DOMContentLoaded', function () {
+  // Seleciona os elementos do offcanvas e do botão de alternância
   var offcanvasElement = document.querySelector('#offcanvasHeader');
   var toggleButtonIcon = document.querySelector('.nav-toggle-button i');
+  var manuallyShown = window.innerWidth >= 992 ? false : true;
 
+  // Inicializa o tooltip para o botão de alternância
+  var tooltip = new bootstrap.Tooltip(toggleButtonIcon, {
+    boundary: document.body
+  });
+
+  // Função para atualizar o texto do tooltip
+  function updateTooltipText(newText) {
+    toggleButtonIcon.setAttribute('data-bs-original-title', newText);
+    tooltip.dispose(); // Destroi o tooltip existente
+    tooltip = new bootstrap.Tooltip(toggleButtonIcon, { // Recria o tooltip
+      boundary: document.body
+    });
+  }
+
+  // Adiciona evento para quando o offcanvas for mostrado
   offcanvasElement.addEventListener('show.bs.offcanvas', function () {
-    toggleButtonIcon.classList.remove('bi-eye');
-    toggleButtonIcon.classList.add('bi-eye-slash');
+    updateTooltipText('Ocultar menu');
   });
 
+  // Adiciona evento para quando o offcanvas for ocultado
   offcanvasElement.addEventListener('hide.bs.offcanvas', function () {
-    toggleButtonIcon.classList.remove('bi-eye-slash');
-    toggleButtonIcon.classList.add('bi-eye');
+    updateTooltipText('Exibir menu');
+    manuallyShown = true;
   });
 
-  var offcanvasElement = document.querySelector('#offcanvasHeader');
+  // Função para mostrar e ocultar o tooltip
+  function showAndHideTooltip() {
+    tooltip.show(); // Mostra o tooltip
+    setTimeout(function () {
+      tooltip.hide(); // Oculta o tooltip após 3 segundos
+    }, 3000);
+  }
+
+  // Exibe o tooltip inicialmente ao carregar o site com um pequeno atraso
+  setTimeout(showAndHideTooltip, 500);
+
+  // Configura o intervalo para mostrar o tooltip a cada 20 segundos
+  setInterval(showAndHideTooltip, 20000);
+
   var offcanvasBootstrap = new bootstrap.Offcanvas(offcanvasElement);
 
   // Verifica o tamanho da janela
@@ -300,4 +330,18 @@ document.addEventListener('DOMContentLoaded', function () {
       offcanvasBootstrap.hide();
     }
   });
+
+  // Função para verificar a posição de rolagem
+  function checkScrollPosition() {
+    var scrollPosition = window.scrollY;
+    var pageHeight = document.documentElement.scrollHeight;
+    var scrollThreshold = pageHeight * 0.3;
+
+    if (scrollPosition > scrollThreshold && !manuallyShown) {
+      offcanvasBootstrap.hide();
+    }
+  }
+
+  // Adiciona evento de scroll para verificar a posição de rolagem
+  window.addEventListener('scroll', checkScrollPosition);
 });

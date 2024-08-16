@@ -118,7 +118,7 @@ h6 {
 #offcanvasHeader {
   z-index: 9997;
   transition: all 0.5s;
-  width: 220px;
+  width: 175px;
   background: 0;
   border: 0
 }
@@ -223,8 +223,8 @@ h6 {
 
 .nav-toggle-button {
   position: fixed;
-  left: 10px;
-  bottom: 10px;
+  left: 1.5rem;
+  bottom: 1.5rem;
   z-index: 9998;
   border: 0;
   font-size: 28px;
@@ -234,14 +234,16 @@ h6 {
   cursor: pointer;
   padding: 5px;
   background-color: #0563bb;
+  width: 56px;
+  height: 56px;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .nav-toggle-button {
-    left: unset;
+    left: 1.5rem;
     bottom: unset;
-    right: 10px;
-    top: 10px;
+    right: unset;
+    top: 1.5rem;
   }
 }
 

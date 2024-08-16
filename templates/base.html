@@ -39,16 +39,16 @@
 
 <body>
   <!-- ======= nav toggle button ======= -->
-  <button class="nav-toggle-button rounded-circle" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasHeader" aria-controls="offcanvasHeader">
-    <i class="bi bi-eye"></i>
+  <button class="nav-toggle-button rounded-circle" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasHeader" aria-controls="offcanvasHeader" >
+    <i class="bi bi-list"></i>
   </button>
 
   <!-- ======= Header ======= -->
   <header id="offcanvasHeader" class="d-flex flex-column justify-content-center offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" aria-labelledby="offcanvasHeaderLabel">
 
-    <nav id="navbar" class="navbar nav-menu mx-4">
+    <nav id="navbar" class="navbar nav-menu ms-4">
     <ul>
-        <li><a href="{% url "home:index" %}#hero" class="nav-link scrollto active"><i class="bi bi-house"></i> <span>Início</span></a></li>
+        <li><a href="{% url 'home:index' %}#hero" class="nav-link scrollto active"><i class="bi bi-house"></i> <span>Início</span></a></li>
         <li><a href="#about" class="nav-link scrollto"><i class="bi bi-person"></i> <span>Sobre</span></a></li>
         <li><a href="#resume" class="nav-link scrollto"><i class="bi bi-file-earmark-text"></i> <span>Resumo</span></a></li>
         <li><a href="#portfolio" class="nav-link scrollto"><i class="bi bi-journal-code"></i> <span>Portfólio</span></a></li>
@@ -106,6 +106,9 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
 
   <!-- Extra -->
   {% block extra_script %}{% endblock extra_script %}
