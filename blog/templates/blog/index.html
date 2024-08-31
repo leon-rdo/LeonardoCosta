@@ -25,6 +25,9 @@
                 <div class="site-heading">
                     <h1>Blog</h1>
                     <span class="subheading">de Leonardo Costa</span>
+                    {% if request.user.is_staff %}
+                    <a href="{% url 'blog:post_create' %}" class="btn btn-sm btn-primary mt-3">Escrever</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
