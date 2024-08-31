@@ -38,6 +38,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=200, verbose_name='Título')),
                 ('slug', models.SlugField(max_length=200, unique=True, verbose_name='Slug')),
+                ('headline', models.CharField(max_length=200, verbose_name='Manchete')),
                 ('content', django_ckeditor_5.fields.CKEditor5Field(verbose_name='Conteúdo')),
                 ('cover_image', models.ImageField(blank=True, null=True, upload_to='posts/covers/', verbose_name='Imagem de Capa')),
                 ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Criado em')),

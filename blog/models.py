@@ -35,6 +35,7 @@ class Tag(models.Model):
 class Post(models.Model):
     title = models.CharField("Título", max_length=200)
     slug = models.SlugField("Slug", max_length=200, unique=True)
+    headline = models.CharField("Manchete", max_length=200)
     content = CKEditor5Field("Conteúdo", config_name='extends')
     cover_image = models.ImageField("Imagem de Capa", upload_to='posts/covers/', blank=True, null=True)
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='posts', verbose_name='Autor')
