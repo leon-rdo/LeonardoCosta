@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block extra_head %}
-<title>Escrever Postagem</title>
+<title>{% if object %}Editar Postagem{% else %}Escrever Postagem{% endif %}</title>
 <link rel="stylesheet" href="{% static 'blog/css/select2.css' %}" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.3.1/typeahead.bundle.min.js"></script>
@@ -14,7 +14,13 @@
 <div class="container">
     <div class="row my-3">
         <div class="col-lg-8 col-md-10 mx-auto">
-            <h1 class="section-heading text-center my-2">Criar Uma Nova Publicação</h1>
+            <h1 class="section-heading text-center my-2">
+                {% if object %}
+                Editar Publicação
+                {% else %}
+                Escrever uma nova Publicação
+                {% endif %}
+            </h1>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form|crispy }}
