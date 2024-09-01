@@ -17,10 +17,16 @@ class BlogIndexView(ArchiveIndexView):
     model = Post
     make_object_list = True
 
+    def get_queryset(self):
+        return super().get_queryset().filter(is_published=True)
 
-class PostDetailView(DetailView):
+
+class PostDetailView(UserPassesTestMixin, DetailView):
     template_name = 'blog/post_detail.html'
     model = Post
+
+    def test_func(self):
+        return self.get_object().is_published or self.request.user.has_perm('blog.view_post')
 
 
 class PostCreateView(UserPassesTestMixin, CreateView):
