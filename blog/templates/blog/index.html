@@ -39,13 +39,13 @@
         <div class="col-md-10 col-lg-8 col-xl-7">
             {% for post in object_list %}
                 <div class="post-preview">
-                    <a href="#">
+                    <a href="{{ post.get_absolute_url }}">
                         <h2 class="post-title">{{ post.title }}</h2>
                         <h3 class="post-subtitle">{{ post.headline|truncatewords_html:16 }}</h3>
                     </a>
                     <p class="post-meta">
                         Postado por
-                        <a href="#!">{{ post.author }}</a>
+                        <a href="#!">{{ post.author.get_full_name }}</a>
                         em {{ post.published_at }}
                     </p>
                 </div>

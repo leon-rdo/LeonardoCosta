@@ -1,6 +1,7 @@
 from datetime import datetime
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.urls import reverse_lazy
 from django_ckeditor_5.fields import CKEditor5Field
 from django.utils.text import slugify
 
@@ -56,6 +57,9 @@ class Post(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)
         super().save()
+
+    def get_absolute_url(self):
+        return reverse_lazy('blog:post_detail', kwargs={'slug': self.slug})
 
     class Meta:
         ordering = ['-created_at']
