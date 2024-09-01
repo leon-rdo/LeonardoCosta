@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.shortcuts import redirect
 from django.views.generic import ArchiveIndexView, CreateView, DetailView, UpdateView
 from django.contrib.auth.mixins import UserPassesTestMixin
 
@@ -33,7 +34,6 @@ class PostCreateView(UserPassesTestMixin, CreateView):
     template_name = 'blog/post_form.html'
     model = Post
     form_class = PostForm
-    success_url = '/blog/'
 
     def test_func(self):
         return self.request.user.has_perm('blog.add_post')
@@ -46,6 +46,9 @@ class PostCreateView(UserPassesTestMixin, CreateView):
     def form_invalid(self, form):
         messages.error(self.request, 'Houve um erro ao salvar o post.')
         return super().form_invalid(form)
+    
+    def get_success_url(self):
+        return self.object.get_absolute_url()
 
 
 class PostUpdateView(UserPassesTestMixin, UpdateView):
@@ -65,3 +68,27 @@ class PostUpdateView(UserPassesTestMixin, UpdateView):
     def form_invalid(self, form):
         messages.error(self.request, 'Houve um erro ao salvar o post.')
         return super().form_invalid(form)
+
+    def get_success_url(self):
+        return self.object.get_absolute_url()
+
+
+def delete_post(request, pk):
+    if request.user.has_perm('blog.delete_post'):
+        post = Post.objects.get(pk=pk)
+        post.delete()
+        messages.success(request, 'Post excluído com sucesso.')
+    else:
+        messages.warning(request, 'Você não tem permissão para excluir este post.')
+    return redirect('blog:index')
+
+
+def switch_published(request, pk):
+    if request.user.has_perm('blog.change_post'):
+        post = Post.objects.get(pk=pk)
+        post.is_published = not post.is_published
+        post.save()
+        messages.success(request, 'Post atualizado com sucesso.')
+    else:
+        messages.warning(request, 'Você não tem permissão para alterar este post.')
+    return redirect(post.get_absolute_url())

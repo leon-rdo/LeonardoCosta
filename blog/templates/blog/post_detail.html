@@ -30,10 +30,43 @@
                     <h1>{{ object.title }}</h1>
                     <h2 class="subheading">{{ object.headline }}</h2>
                     <span class="meta">
+                        {% url 'blog:post_switch_published' object.pk as post_switch_published_url %}
+                        {% if object.is_published %}
                         Postado por
-                        <a href="#!">{{ post.author.get_full_name }}</a>
-                        em {{ post.published_at }}
+                        <a href="#!">{{ object.author.get_full_name }}</a>
+                            em {{ object.published_at }}
+                        {% if user.is_staff %}
+                            <a href="{{ post_switch_published_url }}" class="btn btn-sm btn-warning mt-2">Ocultar</a>
+                        {% endif %}
+                        {% else %}
+                        Este post ainda não foi publicado.
+                        {% if user.is_staff %}
+                            <br>
+                            <a href="{{ post_switch_published_url }}" class="btn btn-sm btn-success mt-2">Publicar</a>
+                        {% endif %}
+                        {% endif %}
+                        {% if user.is_staff %}
+                        <button type="button" class="btn btn-sm btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#deletePostModal">Deletar</button>
+                        {% endif %}
                     </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="deletePostModal" tabindex="-1" aria-labelledby="deletePostModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deletePostModalLabel">Deletar publicação?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Esta publicação será perdida para sempre, tem certeza que deseja deletar?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Voltar</button>
+                    <a href="{% url 'blog:post_delete' object.pk %}" role="button" class="btn btn-danger">Sim, deletar</a>
                 </div>
             </div>
         </div>
