@@ -5,9 +5,10 @@
 {% block extra_head %}
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-<title>Clean Blog - Start Bootstrap Theme</title>
+<meta name="description" content="{{ object.headline }}" />
+<meta name="author" content="{{ object.author.get_full_name }}" />
+<meta name="keywords" content="{% for tag in object.tags.all  %}{{ tag.name }}{% if not forloop.last %},{% endif %}{% endfor %}"/>
+<title>{{ object.title }}</title>
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 <!-- Google fonts-->
@@ -23,7 +24,7 @@
 {% else %}
 <header class="masthead">
 {% endif %}
-<div class="container position-relative px-4 px-lg-5">
+    <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="post-heading">
@@ -75,9 +76,25 @@
 <!-- Post Content-->
 <article class="mb-4">
     <div class="container px-4 px-lg-5">
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <h6>Categorias</h6>
+                {% for category in object.categories.all  %}
+                    <span class="badge bg-secondary">{{ category.name }}</span>
+                {% endfor %}
+            </div>
+        </div>
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 {{ object.content|safe }}
+            </div>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <h6>Tags</h6>
+                {% for tag in object.tags.all  %}
+                    <span class="badge bg-secondary">{{ tag.name }}</span>
+                {% endfor %}
             </div>
         </div>
     </div>
