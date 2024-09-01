@@ -1,5 +1,6 @@
-from django.views.generic import ArchiveIndexView, CreateView, DetailView
 from django.contrib import messages
+from django.views.generic import ArchiveIndexView, CreateView, DetailView
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 from blog.forms import PostForm
 from .models import Post
@@ -22,11 +23,14 @@ class PostDetailView(DetailView):
     model = Post
 
 
-class PostCreateView(CreateView):
+class PostCreateView(UserPassesTestMixin, CreateView):
     template_name = 'blog/post_form.html'
     model = Post
     form_class = PostForm
     success_url = '/blog/'
+
+    def test_func(self):
+        return self.request.user.has_perm('blog.add_post')
 
     def form_valid(self, form):
         form.instance.author = self.request.user
