@@ -34,8 +34,6 @@ jobs:
         python manage.py collectstatic --noinput
 
     - name: Run tests
-      env:
-        SECRET_KEY: ${{ secrets.SECRET_KEY }}
       run: |
         python manage.py test
   deploy:
@@ -55,26 +53,22 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-
     - name: Add SSH key
       run: |
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H ${{ secrets.DEPLOY_SERVER }} >> ~/.ssh/known_hosts
-
     - name: Deploy to Server
       env:
         DEPLOY_SERVER: ${{ secrets.DEPLOY_SERVER }}
         DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
         DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
-        SECRET_KEY: ${{ secrets.SECRET_KEY }}
       run: |
         ssh -i ~/.ssh/id_rsa $DEPLOY_USER@$DEPLOY_SERVER << EOF
           cd $DEPLOY_PATH
           git pull
           source env/bin/activate
-          export SECRET_KEY=$SECRET_KEY
           pip install -r requirements.txt
           python manage.py migrate
           python manage.py collectstatic --noinput
