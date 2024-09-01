@@ -11,12 +11,8 @@ class BlogIndexView(ArchiveIndexView):
     template_name = 'blog/index.html'
     date_field = 'published_at'
     allow_empty = True
-    allow_future = True
     paginate_by = 5
-    paginate_orphans = 1
-    ordering = ['-published_at']
     model = Post
-    make_object_list = True
 
     def get_queryset(self):
         return super().get_queryset().filter(is_published=True)

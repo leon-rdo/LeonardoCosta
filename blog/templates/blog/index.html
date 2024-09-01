@@ -33,10 +33,10 @@
     </div>
 </header>
 <!-- Main Content-->
-<div class="container px-4 px-lg-5">
+<div class="container px-4 px-lg-5 pb-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-7">
-            {% for post in object_list %}
+            {% for post in latest %}
                 <div class="post-preview">
                     <a href="{{ post.get_absolute_url }}">
                         <h2 class="post-title">{{ post.title }}</h2>
@@ -57,8 +57,32 @@
                     <h3>Aguarde... <i class="bi bi-watch"></i></h3>
                 </div>
             {% endfor %}
-            <!-- <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Mais antigos →</a></div> -->
         </div>
+        {% if page_obj.has_previous or page_obj.has_next %}
+        <div class="col-md-10 col-lg-8 col-xl-7 text-center mb-3">
+            <div class="pagination justify-content-center">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a class="btn btn-sm btn-primary text-uppercase d-none d-sm-inline" href="?page=1">&laquo; Primeira</a>
+                        <a class="btn btn-sm btn-primary text-uppercase d-none d-sm-inline" href="?page={{ page_obj.previous_page_number }}">&#8592; Anterior</a>
+                        <a class="btn btn-sm btn-primary text-uppercase d-inline d-sm-none me-3" title="Primeira" href="?page=1">&laquo;</a>
+                        <a class="btn btn-sm btn-primary text-uppercase d-inline d-sm-none me-3" title="Anterior" href="?page={{ page_obj.previous_page_number }}">&#8592;</a>
+                    {% endif %}
+                    {% if page_obj.has_next %}
+                        <a class="btn btn-sm btn-primary text-uppercase d-none d-sm-inline" href="?page={{ page_obj.next_page_number }}">Próxima &#8594;</a>
+                        <a class="btn btn-sm btn-primary text-uppercase d-none d-sm-inline" href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
+                        <a class="btn btn-sm btn-primary text-uppercase d-inline d-sm-none me-3" title="Próxima" href="?page={{ page_obj.next_page_number }}">&#8594;</a>
+                        <a class="btn btn-sm btn-primary text-uppercase d-inline d-sm-none" title="Última" href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+        <div class="col-md-10 col-lg-8 col-xl-7 text-center mb-5">
+            <span class="current badge bg-info mt-3">
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+            </span>
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock content %}
